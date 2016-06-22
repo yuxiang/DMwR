@@ -1,0 +1,41 @@
+# DMwR - 预测海藻数量
+由于化学检测价格便宜，并且易于自动化，而通过分析生物样品来识别水中的藻类要涉及显微镜检验，需要训练有素的专业人员，因此既昂贵又缓慢。因此，构建一个可以基于化学性质来准确预测藻类的模型将有助于建立检测有害藻类的廉价的自动化系统。
+
+## 加载需要的R包
+```{R}
+library(DMwR)
+```
+
+## 数据可视化和摘要
+```{R}
+head(algae)
+summary(algae)
+
+```
+
+1. mxPH
+```{r}
+hist(algae$mxPH, prob = T)
+```
+
+看上去像是正太分布，画个QQ图看下
+```{R}
+qqnorm(algae$mxPH)
+qqline(algae$mxPH)
+```
+
+2. oPO4
+```{r}
+boxplot(algae$oPO4)
+abline(h = mean(algae$oPO4,na.rm = T), lty=2)
+```
+
+由图可知，变量oPO4的分布集中在较小的观测值周围，而多个离群值使得作为中心变量的均值产生了扭曲。
+
+3. NH4
+```{r}
+plot(algae$NH4)
+```
+
+
+
